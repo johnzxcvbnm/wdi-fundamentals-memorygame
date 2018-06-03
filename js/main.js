@@ -21,10 +21,21 @@ var cards = [
 	}
 ];
 var cardsInPlay = [];
+let playerScore = 0;
+
+const updateScore = () => {
+	let score = document.getElementById('CurrentScore');
+	score.innerHTML = playerScore;
+}
 
 var checkForMatch = function() {
-	if(cardsInPlay[0] === cardsInPlay[1]) { alert("Its a match!"); }
-		else { alert("It's not a match."); }
+	if(cardsInPlay[0] === cardsInPlay[1]) {
+		 alert("Its a match!");
+		 playerScore++;
+		 updateScore();
+	 } else {
+			alert("It's not a match.");
+ 	}
 };
 
 var flipCard = function() {
@@ -38,6 +49,7 @@ var flipCard = function() {
 };
 
 var createBoard = function() {
+	updateScore();
 	for(var i = 0; i < cards.length; i++) {
 		var getBoard = document.getElementById("game-board");
 		var cardElement = document.createElement('img');
@@ -49,6 +61,25 @@ var createBoard = function() {
 	}
 };
 
+const resetCards = () => {
+	cardsInPlay = [];
+	for(let i = 0; i < 4; i++) {
+		let cardElement = document.getElementById(i);
+		cardElement.src = "images/back.png";
+	}
+}
+
+const resetGame = () => {
+	playerScore = 0
+	updateScore();
+	resetCards();
+}
+
 createBoard();
-
-
+let temp = document.getElementById('ResetButton');
+temp.addEventListener('click', resetGame);
+temp = document.getElementById('PlayOn');
+temp.addEventListener('click', resetCards);
+// alert("Test");
+// playerScore = 5;
+// updateScore();

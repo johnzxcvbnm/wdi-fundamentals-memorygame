@@ -74,6 +74,10 @@ footer {
 	font-weight: 500;
 }
 
+.Score, #CurrentScore, #ResetButton, #PlayOn {
+	display: inline;
+}
+
 .copyright {
 	font-family: "Raleway", sans-serif;
 	float: left;
